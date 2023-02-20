@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: microservice3
+  namespace: business-logic-layer
+  labels:
+    app: microservice3-event
+    version: 0.0.1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: microservice3-event
+  template:
+    metadata:
+      labels:
+        app: microservice3-event
+    spec:
+      containers:
+      - name: microservice3-event
+        image: cellcardkh/demo3:prod-0.1.1
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 9098
+        #volumeMounts:
+        #- mountPath: /app/logs
+        #  name: app-log
+        env:
+        - name: TZ
+          value: "Asia/Phnom_Penh"
+        - name: ENV
+          value: "prod"
+      imagePullSecrets:
+      - name: business-logic-layer
+      #volumes:
+      #- name: app-log
+      #  hostPath:
+      #    path: /var/log/springboot-app/interal-it/call-fail-trigger-event/
+      #    type: DirectoryOrCreate
