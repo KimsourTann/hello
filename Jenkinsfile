@@ -5,6 +5,7 @@ pipeline {
         stage('Build Docker image') {
             steps {
                 sh "whoami"
+                sh "hostname"
                 sh "docker build -t tannkimsour/helloworld:$BUILD_NUMBER ."
             }
         }
