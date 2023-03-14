@@ -4,6 +4,7 @@ pipeline {
     stages {
         stage('Build Docker image') {
             steps {
+                    sh "sudo -s"
                 sh "whoami"
                 sh "pwd"
                 sh "hostname"
